@@ -1,0 +1,45 @@
+docker run --rm -v $(pwd):/workspace/Wav2Lip wav2lip \
+  --checkpoint_path checkpoints/wav2lip_gan.pth \
+  --face inputs/input_face_hd.png \
+  --audio inputs/input_audio.wav \
+  --outfile results/output.mp4 \
+  --pads 0 10 0 0 \
+  --resize_factor 1 \
+  --fps 25 \
+  --nosmooth
+
+
+  docker run --rm -v $(pwd):/workspace/Wav2Lip wav2lip \
+  --checkpoint_path checkpoints/wav2lip_gan.pth \
+  --face inputs/video3UPDATED.mp4 \
+  --audio inputs/input_audio.wav \
+  --outfile results/output.mp4 \
+  --pads 0 10 0 0 \
+  --resize_factor 1 \
+  --fps 25 \
+  --nosmooth
+
+
+  docker run --rm -v $(pwd):/workspace/Wav2Lip wav2lip \
+  --checkpoint_path checkpoints/wav2lip_gan.pth \
+  --face inputs/video2UPDATED.mp4 \
+  --audio inputs/input_audio.wav \
+  --outfile results/output.mp4 \
+  --resize_factor 2
+
+
+
+
+
+  docker run --rm -v $(pwd):/workspace/Wav2Lip wav2lip \
+  --checkpoint_path checkpoints/wav2lip_gan.pth \
+  --face inputs/input_face.png \
+  --audio inputs/input_audio.wav \
+  --outfile results/output.mp4  
+
+
+
+  docker build -t wav2lip . 
+
+
+  ffmpeg -i inputs/video3.mp4 -t 10 -vf "crop=min(iw\,ih):min(iw\,ih),scale=512:512,format=yuv420p" inputs/video3UPDATED.mp4
